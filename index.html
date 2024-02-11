@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css" type="text/css">
+    <link rel="shortcut icon" href="timer.png" type="image/x-icon">
+    <title>Timer App</title>
+</head>
+
+<body>
+    <div id="display">
+        <div class="hours">00</div><span>&nbsp;:&nbsp;</span>
+        <div class="minutes">00</div><span>&nbsp;:&nbsp;</span>
+        <div class="seconds">00</div>
+    </div>
+
+    <div id="timer">
+        <input type="number" min="0" max="24" class="hoursInput">
+        <input type="number" min="0" max="60" class="minutesInput">
+        <input type="number" min="0" max="60" class="secondsInput">
+    </div>
+
+    <div id="buttons">
+        <button class="startButton">Start</button>
+        <button class="pauseButton">Pause</button>
+        <button class="resetButton">Reset</button>
+        <button class="setButton">Set</button>
+    </div>
+    <script src="script.js"></script>
+</body>
+
+</html>
