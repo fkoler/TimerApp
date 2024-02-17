@@ -1,39 +1,40 @@
 // global variables
 // elements for displaying the counter
-var hours = document.querySelector('.hours');
-var minutes = document.querySelector('.minutes');
-var seconds = document.querySelector('.seconds');
+const hours = document.querySelector('.hours');
+const minutes = document.querySelector('.minutes');
+const seconds = document.querySelector('.seconds');
 
 // input elements
-var hoursInput = document.querySelector('.hoursInput');
-var minutesInput = document.querySelector('.minutesInput');
-var secondsInput = document.querySelector('.secondsInput');
+const hoursInput = document.querySelector('.hoursInput');
+const minutesInput = document.querySelector('.minutesInput');
+const secondsInput = document.querySelector('.secondsInput');
 
 // command buttons
-var startButton = document.querySelector('.startButton');
-var pauseButton = document.querySelector('.pauseButton');
-var resetButton = document.querySelector('.resetButton');
-var setButton = document.querySelector('.setButton');
+const startButton = document.querySelector('.startButton');
+const pauseButton = document.querySelector('.pauseButton');
+const resetButton = document.querySelector('.resetButton');
+const setButton = document.querySelector('.setButton');
 
-var counter = null; // 'main' function responsible for returning the value we need
+let counter = null; // 'main' function responsible for returning the value we need
 
-var currentTimePlusInput = null; // sum of user inputs plus the time when we activate counting
+let currentTimePlusInput = null; // sum of user inputs plus the time when we activate counting
 //                                  i.e., projected time when the counter will stop
-var interval = null; // the difference between the projected time
+let interval = null; // the difference between the projected time
 //                      and the time when clicking 'Start' triggers counting
-var startTimer = function () {
-    var hoursTimer = hours.innerHTML;
-    var minutesTimer = minutes.innerHTML;
-    var secondsTimer = seconds.innerHTML;
+
+const startTimer = () => {
+    let hoursTimer = hours.innerHTML;
+    let minutesTimer = minutes.innerHTML;
+    let secondsTimer = seconds.innerHTML;
 
     if (
         hoursTimer === '00' &&
         minutesTimer === '00' &&
         secondsTimer === '00'
     ) {
-        console.error('Let\'s go again');
+        console.error("Let's go again");
         return;
-    };
+    }
 
     // convert everything to milliseconds
     currentTimePlusInput = new Date().getTime()
@@ -43,8 +44,8 @@ var startTimer = function () {
 
     // this means currentTime should reach currentTimePlusInput
     // so that setInterval goes backward, which is what we need
-    counter = setInterval(function () {
-        var currentTime = new Date().getTime();
+    counter = setInterval(() => {
+        const currentTime = new Date().getTime();
 
         interval = currentTimePlusInput - currentTime + 100; // added 100ms because floor rounds it to a lower value
         //                                                      and the display is not accurate
@@ -69,21 +70,21 @@ var startTimer = function () {
         // here it's all clear
         if (hoursTimer < 10) {
             hoursTimer = '0' + hoursTimer;
-        };
+        }
 
         if (minutesTimer < 10) {
             minutesTimer = '0' + minutesTimer;
-        };
+        }
 
         if (secondsTimer < 10) {
             secondsTimer = '0' + secondsTimer;
-        };
+        }
 
         // here it ends
         if (interval < 1000) {
             resetTimer();
             console.warn('Finished!');
-        };
+        }
 
         hours.innerHTML = hoursTimer;
         minutes.innerHTML = minutesTimer;
@@ -96,13 +97,13 @@ var startTimer = function () {
 
 // actually pauses the counter and by restarting startTimer
 // picks up values from the display
-var pauseTimer = function () {
+const pauseTimer = () => {
     clearInterval(counter);
     pauseButton.style.display = 'none'; //         visually it looks like the same button
     startButton.style.display = 'inline-block'; // but it's not
 };
 
-var resetTimer = function () {
+const resetTimer = () => {
     clearInterval(counter);
 
     hours.innerHTML = '00';
@@ -122,36 +123,36 @@ var resetTimer = function () {
 };
 
 // already seen
-var setTimer = function (event) {
+const setTimer = (event) => {
     event.preventDefault();
 
     if (!hoursInput.value &&
         !minutesInput.value &&
         !secondsInput.value) {
-        console.error('Let\'s go again');
+        console.error("Let's go again");
         return;
-    };
+    }
 
     if (!hoursInput.value ||
         hoursInput.value === null) {
         hoursInput.value = '00';
     } else if (hoursInput.value < 10) {
         hoursInput.value = '0' + hoursInput.value;
-    };
+    }
 
     if (!minutesInput.value ||
         minutesInput.value === null) {
         minutesInput.value = '00';
     } else if (minutesInput.value < 10) {
         minutesInput.value = '0' + minutesInput.value;
-    };
+    }
 
     if (!secondsInput.value ||
         secondsInput.value === null) {
         secondsInput.value = '00';
     } else if (secondsInput.value < 10) {
         secondsInput.value = '0' + secondsInput.value;
-    };
+    }
 
     hours.innerHTML = hoursInput.value;
     minutes.innerHTML = minutesInput.value;
