@@ -49,8 +49,7 @@ const startTimer = () => {
 
         interval = currentTimePlusInput - currentTime + 100; // added 100ms because floor rounds it to a lower value
         //                                                      and the display is not accurate
-        console.log(`currentTime: ${currentTime}, currentTimePlusInput: ${currentTimePlusInput}`);
-        console.log(`interval: ${interval}`);
+        console.log({ currentTimePlusInput }, { currentTime }, { interval });
 
         // to display, we need to convert milliseconds back to the values we use
         hoursTimer = Math.floor(
@@ -63,9 +62,7 @@ const startTimer = () => {
             (interval % (60 * 1000)) / 1000
         );
 
-        // console.log(`hoursTimer: ${hoursTimer},
-        // minutesTimer: ${minutesTimer}, 
-        // secondsTimer: ${secondsTimer}`);
+        // console.log({ hoursTimer }, { minutesTimer }, { secondsTimer });
 
         // here it's all clear
         if (hoursTimer < 10) {
@@ -126,6 +123,14 @@ const resetTimer = () => {
 const setTimer = (event) => {
     event.preventDefault();
 
+    const formatInput = (input) => {
+        if (!input.value || input.value === null) {
+            input.value = '00';
+        } else if (input.value < 10) {
+            input.value = '0' + input.value;
+        }
+    };
+
     if (!hoursInput.value &&
         !minutesInput.value &&
         !secondsInput.value) {
@@ -133,34 +138,15 @@ const setTimer = (event) => {
         return;
     }
 
-    if (!hoursInput.value ||
-        hoursInput.value === null) {
-        hoursInput.value = '00';
-    } else if (hoursInput.value < 10) {
-        hoursInput.value = '0' + hoursInput.value;
-    }
-
-    if (!minutesInput.value ||
-        minutesInput.value === null) {
-        minutesInput.value = '00';
-    } else if (minutesInput.value < 10) {
-        minutesInput.value = '0' + minutesInput.value;
-    }
-
-    if (!secondsInput.value ||
-        secondsInput.value === null) {
-        secondsInput.value = '00';
-    } else if (secondsInput.value < 10) {
-        secondsInput.value = '0' + secondsInput.value;
-    }
+    formatInput(hoursInput);
+    formatInput(minutesInput);
+    formatInput(secondsInput);
 
     hours.innerHTML = hoursInput.value;
     minutes.innerHTML = minutesInput.value;
     seconds.innerHTML = secondsInput.value;
 
-    hoursInput.value = null;
-    minutesInput.value = null;
-    secondsInput.value = null;
+    [hoursInput, minutesInput, secondsInput].forEach(input => input.value = null);
 
     setButton.toggleAttribute('disabled');
 };
