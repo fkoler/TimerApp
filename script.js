@@ -32,7 +32,7 @@ const startTimer = () => {
         minutesTimer === '00' &&
         secondsTimer === '00'
     ) {
-        console.error("Let's go again");
+        console.error('Let\'s go again');
         return;
     }
 
@@ -134,9 +134,9 @@ const setTimer = (event) => {
     if (!hoursInput.value &&
         !minutesInput.value &&
         !secondsInput.value) {
-        console.error("Let's go again");
+        console.error('Let\'s go again');
         return;
-    }
+    };
 
     formatInput(hoursInput);
     formatInput(minutesInput);
