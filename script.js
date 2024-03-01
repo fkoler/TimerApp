@@ -27,20 +27,17 @@ const startTimer = () => {
     let minutesTimer = minutes.innerHTML;
     let secondsTimer = seconds.innerHTML;
 
-    if (
-        hoursTimer === '00' &&
-        minutesTimer === '00' &&
-        secondsTimer === '00'
-    ) {
-        console.error('Let\'s go again');
+    if (hoursTimer === '00' && minutesTimer === '00' && secondsTimer === '00') {
+        console.error("Let's go again");
         return;
     }
 
     // convert everything to milliseconds
-    currentTimePlusInput = new Date().getTime()
-        + (hoursTimer * 60 * 60 * 1000)
-        + (minutesTimer * 60 * 1000)
-        + (secondsTimer * 1000);
+    currentTimePlusInput =
+        new Date().getTime() +
+        hoursTimer * 60 * 60 * 1000 +
+        minutesTimer * 60 * 1000 +
+        secondsTimer * 1000;
 
     // this means currentTime should reach currentTimePlusInput
     // so that setInterval goes backward, which is what we need
@@ -55,12 +52,8 @@ const startTimer = () => {
         hoursTimer = Math.floor(
             (interval % (24 * 60 * 60 * 1000)) / (60 * 60 * 1000)
         );
-        minutesTimer = Math.floor(
-            (interval % (60 * 60 * 1000)) / (60 * 1000)
-        );
-        secondsTimer = Math.floor(
-            (interval % (60 * 1000)) / 1000
-        );
+        minutesTimer = Math.floor((interval % (60 * 60 * 1000)) / (60 * 1000));
+        secondsTimer = Math.floor((interval % (60 * 1000)) / 1000);
 
         // console.log({ hoursTimer }, { minutesTimer }, { secondsTimer });
 
@@ -131,12 +124,10 @@ const setTimer = (event) => {
         }
     };
 
-    if (!hoursInput.value &&
-        !minutesInput.value &&
-        !secondsInput.value) {
-        console.error('Let\'s go again');
+    if (!hoursInput.value && !minutesInput.value && !secondsInput.value) {
+        console.error("Let's go again");
         return;
-    };
+    }
 
     formatInput(hoursInput);
     formatInput(minutesInput);
@@ -146,7 +137,9 @@ const setTimer = (event) => {
     minutes.innerHTML = minutesInput.value;
     seconds.innerHTML = secondsInput.value;
 
-    [hoursInput, minutesInput, secondsInput].forEach(input => input.value = null);
+    [hoursInput, minutesInput, secondsInput].forEach(
+        (input) => (input.value = null)
+    );
 
     setButton.toggleAttribute('disabled');
 };
