@@ -8,6 +8,7 @@ const seconds = document.querySelector('.seconds');
 const hoursInput = document.querySelector('.hoursInput');
 const minutesInput = document.querySelector('.minutesInput');
 const secondsInput = document.querySelector('.secondsInput');
+const inputElements = [hoursInput, minutesInput, secondsInput];
 
 // command buttons
 const startButton = document.querySelector('.startButton');
@@ -58,17 +59,13 @@ const startTimer = () => {
         // console.log({ hoursTimer }, { minutesTimer }, { secondsTimer });
 
         // here it's all clear
-        if (hoursTimer < 10) {
-            hoursTimer = '0' + hoursTimer;
+        function prependZeroIfLessThanTen(value) {
+            return value < 10 ? '0' + value : value;
         }
 
-        if (minutesTimer < 10) {
-            minutesTimer = '0' + minutesTimer;
-        }
-
-        if (secondsTimer < 10) {
-            secondsTimer = '0' + secondsTimer;
-        }
+        hoursTimer = prependZeroIfLessThanTen(hoursTimer);
+        minutesTimer = prependZeroIfLessThanTen(minutesTimer);
+        secondsTimer = prependZeroIfLessThanTen(secondsTimer);
 
         // here it ends
         if (interval < 1000) {
@@ -108,8 +105,19 @@ const resetTimer = () => {
     interval = null;
 
     setButton.removeAttribute('disabled');
+    setButton.style.cursor = 'pointer';
     pauseButton.style.display = 'none';
     startButton.style.display = 'inline-block';
+
+    inputElements.forEach((input) => {
+        input.removeAttribute('disabled');
+    });
+
+    inputElements.forEach((input) => {
+        input.style.cursor = 'pointer';
+    });
+
+    console.warn('Clear');
 };
 
 // already seen
@@ -142,6 +150,14 @@ const setTimer = (event) => {
     );
 
     setButton.toggleAttribute('disabled');
+    inputElements.forEach((input) => {
+        input.setAttribute('disabled', true);
+    });
+
+    setButton.style.cursor = 'auto';
+    inputElements.forEach((input) => {
+        input.style.cursor = 'auto';
+    });
 };
 
 startButton.addEventListener('click', startTimer);
