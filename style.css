@@ -2,12 +2,18 @@
 body {
     background-color: #000000;
     color: #f5f5f5;
+    height: calc(100dvh - 18px);
+}
+
+#wrapper {
+    position: relative;
+    top: 25%;
+    margin: auto;
 }
 
 #display {
     font-family: Orbitron, sans-serif;
     font-weight: 800;
-    margin-top: 3rem;
     display: flex;
     justify-content: center;
     font-size: 4rem;
@@ -20,7 +26,7 @@ body {
 }
 
 button {
-    border-radius: 0.8rem;
+    border-radius: 0.7rem;
     font-family: sans-serif;
 }
 

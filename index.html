@@ -13,25 +13,27 @@
 </head>
 
 <body>
-    <div id="display">
-        <div class="hours">00</div>
-        <span>&nbsp;:&nbsp;</span>
-        <div class="minutes">00</div>
-        <span>&nbsp;:&nbsp;</span>
-        <div class="seconds">00</div>
-    </div>
+    <div id="wrapper">
+        <div id="display">
+            <div class="hours">00</div>
+            <span>&nbsp;:&nbsp;</span>
+            <div class="minutes">00</div>
+            <span>&nbsp;:&nbsp;</span>
+            <div class="seconds">00</div>
+        </div>
 
-    <div id="timer">
-        <input type="number" min="0" max="24" class="hoursInput" />
-        <input type="number" min="0" max="60" class="minutesInput" />
-        <input type="number" min="0" max="60" class="secondsInput" />
-    </div>
+        <div id="timer">
+            <input type="number" min="0" max="24" class="hoursInput" />
+            <input type="number" min="0" max="60" class="minutesInput" />
+            <input type="number" min="0" max="60" class="secondsInput" />
+        </div>
 
-    <div id="buttons">
-        <button class="startButton">Start</button>
-        <button class="pauseButton">Pause</button>
-        <button class="resetButton">Reset</button>
-        <button class="setButton">Set</button>
+        <div id="buttons">
+            <button class="startButton">Start</button>
+            <button class="pauseButton">Pause</button>
+            <button class="resetButton">Reset</button>
+            <button class="setButton">Set</button>
+        </div>
     </div>
     <script src="script.js"></script>
 </body>

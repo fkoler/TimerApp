@@ -69,8 +69,8 @@ const startTimer = () => {
 
         // here it ends
         if (interval < 1000) {
-            resetTimer();
             console.warn('Finished!');
+            resetTimer();
         }
 
         hours.innerHTML = hoursTimer;
@@ -145,9 +145,7 @@ const setTimer = (event) => {
     minutes.innerHTML = minutesInput.value;
     seconds.innerHTML = secondsInput.value;
 
-    [hoursInput, minutesInput, secondsInput].forEach(
-        (input) => (input.value = null)
-    );
+    inputElements.forEach((input) => (input.value = null));
 
     setButton.toggleAttribute('disabled');
     inputElements.forEach((input) => {
